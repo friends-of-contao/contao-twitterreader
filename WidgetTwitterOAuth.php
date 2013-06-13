@@ -160,8 +160,12 @@ class WidgetTwitterOAuth extends Widget
 		$oauth = new TwitterOAuth(TWITTERREADER_CONSUMER_KEY, TWITTERREADER_CONSUMER_SECRET);
 		
 		$urlRequest = preg_replace('/&action=TwitterReaderOAuthCheck/i', '', $this->Environment->request);
-		$objRequest = $oauth->getRequestToken($this->Environment->url.$urlRequest);
-		
+        
+        
+        
+        
+		$objRequest = $oauth->getRequestToken($this->Environment->base.$urlRequest);
+        
 		
 		$this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token']", $objRequest['oauth_token']);
 		$this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token_secret']", $objRequest['oauth_token_secret']);

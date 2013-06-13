@@ -64,7 +64,7 @@ class FrontendTwitterReader extends Module
 	
 		$xmlFeed = $sqlTwitter->twitterFeedBackup;
 							
-		$UpdateRange = 1; // check only, if last check is longer than 1 minute old.
+		$UpdateRange = 61; // check only, if last check is longer than 1 minute old.
 		$actualTime=time();
 		
 		if ((($actualTime-$sqlTwitter->twitterLastUpdate)>$UpdateRange) ||
@@ -87,6 +87,7 @@ class FrontendTwitterReader extends Module
 
 			$objFeed  = $oauth->get('statuses/'.$this->twitter_requesttype,$arrFeed);
 			
+            
 			if (is_array($objFeed))
 			{
 				$arrSet = array(
@@ -119,6 +120,7 @@ class FrontendTwitterReader extends Module
 		{
 			$textOutput = $item->text;
 			$showItem = true;
+
 			
 			if (($this->twitterEnableHTTPLinks) && ($item->entities->urls))
 			{
@@ -135,6 +137,7 @@ class FrontendTwitterReader extends Module
 									$textOutput);            
 				}
 			}
+
 			 
 			if (($this->twitterEnableUserProfileLink) && ($item->entities->user_mentions))
 			{
