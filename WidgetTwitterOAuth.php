@@ -136,19 +136,17 @@ class WidgetTwitterOAuth extends Widget
 						$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token'],
 						$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']);
 		
-			$oauthRequest->format = 'xml';
-			$xmlAuth  = $oauthRequest->get('account/verify_credentials');
+			$oauthRequest->format = 'json';
+			$objAuth  = $oauthRequest->get('account/verify_credentials');
 		
-			$xmlUserAuth = new SimpleXMLElement($xmlAuth,LIBXML_NOWARNING | LIBXML_NOERROR,false);
-
-			if ($xmlUserAuth->error)
+			if ($objAuth->error)
 			{
-				$strReturn =	$xmlUserAuth->error.'<br>';
+				$strReturn =	$objAuth->error.'<br>';
 			}
 			else
 			{
-				$strReturn =	'<img src="'.$xmlUserAuth->profile_image_url.'"><br>';
-				$strReturn .=	$xmlUserAuth->screen_name.'<br>';
+				$strReturn =	'<img src="'.$objAuth->profile_image_url.'"><br>';
+				$strReturn .=	$objAuth->screen_name.'<br>';
 			}
 			
 		return $strReturn;
@@ -161,18 +159,16 @@ class WidgetTwitterOAuth extends Widget
 
 		$oauth = new TwitterOAuth(TWITTERREADER_CONSUMER_KEY, TWITTERREADER_CONSUMER_SECRET);
 		
-		
 		$urlRequest = preg_replace('/&action=TwitterReaderOAuthCheck/i', '', $this->Environment->request);
-		$request = $oauth->getRequestToken($this->Environment->base.$urlRequest);
-
-		$this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token']", $request['oauth_token']);
-		$this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token_secret']", $request['oauth_token_secret']);
+		$objRequest = $oauth->getRequestToken($this->Environment->url.$urlRequest);
 		
+		
+		$this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token']", $objRequest['oauth_token']);
+		$this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token_secret']", $objRequest['oauth_token_secret']);
 		
 		if($oauth->http_code==200)
 		{
-
-			$url = $oauth->getAuthorizeURL($request['oauth_token']);
+			$url = $oauth->getAuthorizeURL($objRequest['oauth_token']);
 			$this->redirect($url);
 		} 
 		else 

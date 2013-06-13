@@ -64,11 +64,11 @@ class FrontendTwitterReader extends Module
 	
 		$xmlFeed = $sqlTwitter->twitterFeedBackup;
 							
-		$UpdateRange = 10; // check only, if last check is longer than 1 minute old.
+		$UpdateRange = 1; // check only, if last check is longer than 1 minute old.
 		$actualTime=time();
 		
 		if ((($actualTime-$sqlTwitter->twitterLastUpdate)>$UpdateRange) ||
-			(substr($sqlTwitter->twitterFeedBackup,2,3)!='xml'))
+			(!is_array($sqlTwitter->twitterFeedBackup)))
 		{	
 		
 			$oauth = new TwitterOAuth(TWITTERREADER_CONSUMER_KEY, TWITTERREADER_CONSUMER_SECRET,
@@ -76,28 +76,26 @@ class FrontendTwitterReader extends Module
 						$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']);
 
 		
-			$oauth->format = 'xml';
+			$oauth->format = 'json';
 			
 			$arrFeed = array('include_entities'=>true,'count'=>$this->twittercount,'include_rts'=>true);
-			
 			
 			if ($this->twitter_requesttype=='user_timeline')
 			{
 				$arrFeed['screen_name']=$this->twitterusers;
 			}
 
-			$xmlFeed  = $oauth->get('statuses/'.$this->twitter_requesttype,$arrFeed);
+			$objFeed  = $oauth->get('statuses/'.$this->twitter_requesttype,$arrFeed);
 			
-			if (substr($xmlFeed,2,3)=='xml')
+			if (is_array($objFeed))
 			{
-				
 				$arrSet = array(
 							'twitterLastUpdate'	=> time(),
-							'twitterFeedBackup' => $xmlFeed
+							'twitterFeedBackup' => $objFeed
 							);
 								
 								
-				$objFeed = $this->Database->prepare("UPDATE tl_module %s WHERE id=?")
+				$objDBFeed = $this->Database->prepare("UPDATE tl_module %s WHERE id=?")
 							->set($arrSet)
 							->execute($this->id);
 			}		
@@ -109,26 +107,24 @@ class FrontendTwitterReader extends Module
 			}
 		}
 		
-		
-		if (substr($xmlFeed,2,3)!='xml')
+		if (!is_array($objFeed))
 		{
+			$this->log('JSON  dump for Twitter module not correct. Module ID "' . $this->id.'"', 'TwitterReader', TL_ERROR);
 			
-			$this->log('XML dump for Twitter module not correct. Module ID "' . $this->id.'"', 'TwitterReader', TL_ERROR);
 			return;
 		}
-
-	
-		$arrResponse = new SimpleXMLElement($xmlFeed,LIBXML_NOWARNING | LIBXML_NOERROR,false);
 		
 		
-		foreach ($arrResponse as $item)
+		foreach ($objFeed as $item)
 		{
 			$textOutput = $item->text;
 			$showItem = true;
 			
 			if (($this->twitterEnableHTTPLinks) && ($item->entities->urls))
-			{	
-				foreach ($item->entities->urls->url as $url)
+			{
+				
+				//print_a($item);	
+				foreach ($item->entities->urls as $url)
 				{
 					$textOutput = str_replace($url->url,
 										sprintf('<a title="%s" href="%s" %s>%s</a>',
@@ -142,7 +138,9 @@ class FrontendTwitterReader extends Module
 			 
 			if (($this->twitterEnableUserProfileLink) && ($item->entities->user_mentions))
 			{
-				foreach ($item->entities->user_mentions->user_mention as $mention)
+				//	print_a($item);
+				
+				foreach ($item->entities->user_mentions as $mention)
 				{
 					$textOutput = str_replace('@'.$mention->screen_name,
 										sprintf('<a title="%s" href="http://www.twitter.com/%s" %s>@%s</a>',
@@ -156,7 +154,7 @@ class FrontendTwitterReader extends Module
 			
 			if (($this->twitterEnableHashtagLink) && ($item->entities->hashtags))
 			{
-				foreach ($item->entities->hashtags->hashtag as $hashtag)
+				foreach ($item->entities->hashtags as $hashtag)
 				{
 					$textOutput = str_replace('#'.$hashtag->text,
 										sprintf('<a title="%s" href="http://www.twitter.com/#!/search?q=%s" %s>#%s</a>',
