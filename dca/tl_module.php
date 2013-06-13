@@ -24,7 +24,12 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitter_requesttype'] = array
 	'save_callback'	=>	array(
 							array('tl_twitter_module', 'purgeCacheData'),
 							),
-	'options'		=> array('public_timeline','home_timeline','friends_timeline','user_timeline'),
+	//'options'		=> array('public_timeline','home_timeline','friends_timeline','user_timeline'),
+	
+	'options'      => array('mentions_timeline','home_timeline','retweets_of_me','user_timeline'),
+	
+	
+    
 	'eval'          => array('mandatory'=>true,'submitOnChange'=>true)
 );
 

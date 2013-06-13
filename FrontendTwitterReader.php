@@ -62,15 +62,18 @@ class FrontendTwitterReader extends Module
 						->limit(1)
 						->execute($this->id);
 	
-		$xmlFeed = $sqlTwitter->twitterFeedBackup;
-							
-		$UpdateRange = 61; // check only, if last check is longer than 1 minute old.
+		$objFeedBackup = $sqlTwitter->twitterFeedBackup;
+			
+            
+        $objFeed = deserialize($objFeedBackup);
+            
+            				
+		$UpdateRange = 10; // check only, if last check is longer than 1 minute old.
 		$actualTime=time();
 		
 		if ((($actualTime-$sqlTwitter->twitterLastUpdate)>$UpdateRange) ||
-			(!is_array($sqlTwitter->twitterFeedBackup)))
+			(!is_array($objFeed)))
 		{	
-		
 			$oauth = new TwitterOAuth(TWITTERREADER_CONSUMER_KEY, TWITTERREADER_CONSUMER_SECRET,
 						$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token'],
 						$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']);
@@ -87,25 +90,33 @@ class FrontendTwitterReader extends Module
 
 			$objFeed  = $oauth->get('statuses/'.$this->twitter_requesttype,$arrFeed);
 			
-            
-			if (is_array($objFeed))
-			{
-				$arrSet = array(
-							'twitterLastUpdate'	=> time(),
-							'twitterFeedBackup' => $objFeed
-							);
-								
-								
-				$objDBFeed = $this->Database->prepare("UPDATE tl_module %s WHERE id=?")
-							->set($arrSet)
-							->execute($this->id);
-			}		
-			else
-			{
-				$sqlTwitter = $this->Database->prepare("UPDATE tl_module SET twitterFeedBackup=NULL WHERE id=?")
-						->executeUncached($this->id);
-	
-			}
+            if (count($objFeed->errors)>0)
+            {            
+                $this->log($objFeed->errors[0]->message, 'TwitterReader', TL_ERROR);
+               
+            }
+            else 
+            {
+                
+    			if (is_array($objFeed))
+    			{
+    				$arrSet = array(
+    							'twitterLastUpdate'	=> time(),
+    							'twitterFeedBackup' => $objFeed
+    							);
+    								
+    								
+    				$objDBFeed = $this->Database->prepare("UPDATE tl_module %s WHERE id=?")
+    							->set($arrSet)
+    							->execute($this->id);
+    			}		
+    			else
+    			{
+    				$sqlTwitter = $this->Database->prepare("UPDATE tl_module SET twitterFeedBackup=NULL WHERE id=?")
+    						->executeUncached($this->id);
+    	
+    			}
+            }
 		}
 		
 		if (!is_array($objFeed))
