@@ -1,10 +1,8 @@
 <?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
-if (function_exists('curl_init'))
-{
 	
 	$GLOBALS['TL_DCA']['tl_module']['palettes']['twitterreader'] = 'name,type,headline;{area_twitter},twitter_requesttype,twitterusers,twittercount,twittertemplate;{area_twittersettings},twitterEnableHTTPLinks,twitterEnableUserProfileLink,twitterEnableHashtagLink;align,space,cssID';
-}
+
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterusers'] = array
 (
