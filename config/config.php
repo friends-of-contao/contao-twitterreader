@@ -39,5 +39,7 @@ define('TWITTERREADER_CONSUMER_KEY', 'FiC4gKrsbRpXQ4GatTbLhw');
 define('TWITTERREADER_CONSUMER_SECRET', 'noMHHjUPEYiBwH7LHg19x6mvkxG60AmEHfMzIGXCo');
 
 
-
-?>
+/**
+ * Settings Icon
+ */
+$GLOBALS['SETTINGS4WARD']['icon']['area_twitterreader'] = 'system/modules/twitterreader/assets/twitter_legend.png';
