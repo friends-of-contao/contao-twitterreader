@@ -35,8 +35,8 @@ $GLOBALS['TL_LANG']['tl_module']['twitterusers'] = array('Name des Twitter Benut
 $GLOBALS['TL_LANG']['tl_module']['twittercount'] = array('Anzahl der Nachrichten','Wieviele Nachrichten moechten Sie anzeigen ?');
 $GLOBALS['TL_LANG']['tl_module']['twitterEnableHTTPLinks'] = array('Wandel HTTP Links um','Sollen URL automatisch als Link umgeschrieben werden ?');
 $GLOBALS['TL_LANG']['tl_module']['twitterShowReplies'] = array('Anzeige aller Antwort-Tweets','Sollen Nachrichten angezeigt werden, die eine Antwort beinhalten?');
-$GLOBALS['TL_LANG']['tl_module']['twitterEnableUserProfileLink'] = array('Link auf Benutzerprofil des Antwortenden','Bei Antworten auf das Profil des Schreibenden verlinken');
-$GLOBALS['TL_LANG']['tl_module']['twitterEnableHashtagLink'] = array('Verlinkung der Hashtags','Sollen automatisch vorhandene Hashtags verlinkt werden.');
+$GLOBALS['TL_LANG']['tl_module']['twitterEnableUserProfileLink'] = array('Verlinkung des Benutzerprofils','Sollen automatisch vorhandene Benutzernamen zu den Twitterprofilen verlinkt werden?');
+$GLOBALS['TL_LANG']['tl_module']['twitterEnableHashtagLink'] = array('Verlinkung der Hashtags','Sollen automatisch vorhandene Hashtags verlinkt werden?');
 
 
 $GLOBALS['TL_LANG']['tl_module']['twittertemplate'] = array('Template','Frontendtemplate. Beginnt mit twitterreader_');
