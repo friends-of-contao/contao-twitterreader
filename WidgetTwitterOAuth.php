@@ -1,5 +1,22 @@
 <?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
+/**
+ * Twitter Reader for Contao Open Source CMS
+ *
+ * Copyright (C) 2013 Stefan Lindecke <lindesbs@googlemail.com>
+ *
+ * @package     twitterreader
+ * @license     http://gplv3.fsf.org/ GPL
+ * @filesource  https://github.com/lindesbs/TwitterReader
+ */
+
+/**
+ * Class WidgetTwitterOAuth
+ *
+ * @copyright   GPL
+ * @author      Stefan Lindecke
+ * @package     Widget
+ */
 class WidgetTwitterOAuth extends Widget
 {
 
@@ -20,9 +37,6 @@ class WidgetTwitterOAuth extends Widget
 	 * @var array
 	 */
 	protected $arrContents = array();
-	
-	
-	
 	
 	/**
 	 * Ajax id
@@ -177,16 +191,12 @@ class WidgetTwitterOAuth extends Widget
 		} 
 		else 
 		{		
-			//print_a($request);
 			die('Something wrong happened.');
 		}
 	}
 	
-	
-	
 	protected function verifyTwitterOAuth()
 	{
-	
 		require_once('TwitterOAuth.php');
 		$oauth = new TwitterOAuth(TWITTERREADER_CONSUMER_KEY, TWITTERREADER_CONSUMER_SECRET,
 						$GLOBALS['TL_CONFIG']['twitterreader_oauth_token'],
@@ -206,7 +216,4 @@ class WidgetTwitterOAuth extends Widget
 	
 		$this->redirect($urlRequest);
 	}
-	
 }
-
-?>
