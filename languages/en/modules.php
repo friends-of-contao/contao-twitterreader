@@ -10,7 +10,6 @@
  * @filesource  https://github.com/lindesbs/TwitterReader
  */
 
-
 /**
  * Back end modules
  */
