@@ -39,7 +39,7 @@
 		<?php foreach ($this->TwitterData as $item): ?>
 		 
 			<li class="<?php echo $item->EvenOdd; ?> <?php echo $item->First; ?> <?php echo $item->Last; ?>">
-			<span class="date"><?php echo date($GLOBALS['TL_CONFIG']['dateFormat'],strtotime($item->created_at)); ?></span>
+			<span class="date"><?php echo date($GLOBALS['objPage']->dateFormat,strtotime($item->created_at)); ?></span>
 			<?php echo $item->text; ?>
 			</li>
 		<?php endforeach; ?>
