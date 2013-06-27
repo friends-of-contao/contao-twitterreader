@@ -59,3 +59,6 @@ $GLOBALS['TL_LANG']['tl_module']['twitter_requesttype'] = array
 	'Anfragetype',
 	''
 );
+
+
+$GLOBALS['TL_LANG']['tl_module']['twitterreader_auth_missing'] = 'Twitter Authentifizierung nicht vollstaendig. Bitte neu durchfuehren.';

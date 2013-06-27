@@ -52,3 +52,7 @@ $GLOBALS['TL_LANG']['tl_module']['twitter_requesttype'] = array
 	'Requesttype',
 	'Different request types for tweets'
 );
+
+
+
+$GLOBALS['TL_LANG']['tl_module']['twitterreader_auth_missing'] = 'Twitter authentification not completed. Please reauthenticate.';
