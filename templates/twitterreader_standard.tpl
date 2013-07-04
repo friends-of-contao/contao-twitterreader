@@ -8,7 +8,7 @@
 <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
 <?php endif; ?>
 
-<ul class="<?php echo $this->class; ?>">
+<ul>
 	<?php if ($this->TwitterData): ?>
 		<?php foreach ($this->TwitterData as $item): ?>
 		 
