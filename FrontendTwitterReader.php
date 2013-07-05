@@ -27,16 +27,35 @@ class FrontendTwitterReader extends Module
     protected $strTemplate = 'twitterreader_standard';
 
 
+    public function generate()
+	{
+		if (TL_MODE == 'BE')
+		{
+			$objTemplate = new BackendTemplate('be_wildcard');
+
+			$objTemplate->wildcard = '### TWITTER READER ###';
+			$objTemplate->title = $this->headline;
+			$objTemplate->id = $this->id;
+			$objTemplate->link = $this->name;
+			$objTemplate->href = $this->Environment->script.'?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+
+			return $objTemplate->parse();
+		}
+
+		if ($this->twittertemplate)
+		{
+    		$this->strTemplate = $this->twittertemplate;
+		}
+
+		return parent::generate();
+	}
+
+
     /**
      * Generate module
      */
     protected function compile()
     {
-        if ($this->twittertemplate)
-        {
-            $this->Template=new FrontendTemplate($this->twittertemplate);
-        }
-
         $sqlTwitter=$this->Database->prepare("SELECT * FROM tl_module WHERE id=?")->limit(1)->execute($this->id);
 
         $objFeedBackup=$sqlTwitter->twitterFeedBackup;
