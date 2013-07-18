@@ -131,7 +131,7 @@ class FrontendTwitterReader extends Module
             {
                 foreach ($item->entities->user_mentions as $mention)
                 {
-                    $textOutput=str_replace('@' . $mention->screen_name, sprintf('<a title="%s" href="http://www.twitter.com/%s" %s>@%s</a>', $mention->name, $mention->screen_name, LINK_NEW_WINDOW_BLUR, $mention->screen_name), $textOutput);
+                    $textOutput=str_replace('@' . $mention->screen_name, sprintf('<a title="%s" href="https://www.twitter.com/%s" %s>@%s</a>', $mention->name, $mention->screen_name, LINK_NEW_WINDOW_BLUR, $mention->screen_name), $textOutput);
                 }
             }
 
@@ -139,7 +139,7 @@ class FrontendTwitterReader extends Module
             {
                 foreach ($item->entities->hashtags as $hashtag)
                 {
-                    $textOutput=str_replace('#' . $hashtag->text, sprintf('<a title="%s" href="http://www.twitter.com/#!/search?q=%s" %s>#%s</a>', $hashtag->text, $hashtag->text, LINK_NEW_WINDOW_BLUR, $hashtag->text), $textOutput);
+                    $textOutput=str_replace('#' . $hashtag->text, sprintf('<a title="%s" href="https://www.twitter.com/search?q=%s" %s>#%s</a>', $hashtag->text, $hashtag->text, LINK_NEW_WINDOW_BLUR, $hashtag->text), $textOutput);
                 }
             }
 
