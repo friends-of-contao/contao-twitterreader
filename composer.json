@@ -1,0 +1,46 @@
+
+{
+    "name": "lindesbs/twitterreader",
+    "description": "TwitterReader for Contao",
+    "keywords": ["twitter", "contao"],
+    "type": "contao-module",
+    "homepage": "http://www.lindesbs.de",
+    "license": [
+        "LGPL-3.0+",
+        "CC-BY-NC-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Stefan Lindecke",
+            "homepage": "http://www.lindesbs.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Kirsten Roschanski",
+            "homepage": "http://kirsten-roschanski.de/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/lindesbs/twitterreader/issues",
+        "irc": "irc://irc.freenode.org/contao.dev",
+        "source": "https://github.com/lindesbs/twitterreader",
+        "forum": "https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
+    },
+    "require": {
+        "php": ">=5.3",
+        "contao/core": ">=2.11,<4",
+        "contao-community-alliance/composer-installer": "*"
+    },
+    "replace": {
+        "contao-legacy/twitterreader": "*"
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "assets": "assets",
+                "contao": "system/modules/twitterreader"
+            }
+        }
+    }
+}
