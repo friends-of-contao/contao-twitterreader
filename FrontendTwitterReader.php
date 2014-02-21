@@ -60,7 +60,7 @@ class FrontendTwitterReader extends Module
 
         $objFeedBackup=$sqlTwitter->twitterFeedBackup;
 
-        $objFeed=deserialize($objFeedBackup);
+        $objFeed=json_decode($objFeedBackup);
 
         $UpdateRange=10;
         // check only, if last check is longer than 1 minute old.
@@ -95,7 +95,7 @@ class FrontendTwitterReader extends Module
                 {
                     $arrSet=array(
                         'twitterLastUpdate' => time(),
-                        'twitterFeedBackup' => $objFeed
+                        'twitterFeedBackup' => json_encode($objFeed)
                     );
 
                     $objDBFeed=$this->Database->prepare("UPDATE tl_module %s WHERE id=?")->set($arrSet)->execute($this->id);
