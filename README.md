@@ -4,8 +4,6 @@ TwitterReader
 TwitterReader extension for Contao
 
 
-Issues : http://www.contao-forge.org/projects/twitterreader
-
 
 Benötigt das Plugin php5-curl (apt-get install php5-curl)
 
