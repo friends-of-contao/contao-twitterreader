@@ -1,4 +1,3 @@
-
 {
     "name": "lindesbs/twitterreader",
     "description": "TwitterReader for Contao",
@@ -32,14 +31,16 @@
         "contao/core": ">=2.11,<4",
         "contao-community-alliance/composer-installer": "*"
     },
+    "autoload": {
+        "classmap": [""]
+    },
     "replace": {
         "contao-legacy/twitterreader": "*"
     },
     "extra": {
         "contao": {
             "sources": {
-                "assets": "assets",
-                "contao": "system/modules/twitterreader"
+                "": "system/modules/twitterreader"
             }
         }
     }
