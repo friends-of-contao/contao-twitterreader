@@ -1,6 +1,6 @@
 {
     "name": "lindesbs/twitterreader",
-    "description": "TwitterReader for Contao",
+    "description": "TwitterReader for the Contao Open Source CMS",
     "keywords": ["twitter", "contao"],
     "type": "contao-module",
     "homepage": "http://www.lindesbs.de",
@@ -17,6 +17,7 @@
         {
             "name": "Kirsten Roschanski",
             "homepage": "http://kirsten-roschanski.de/",
+            "email": "kontakt@kirsten-roschanski.de",
             "role": "Developer"
         }
     ],
@@ -32,7 +33,7 @@
         "contao-community-alliance/composer-installer": "*"
     },
     "autoload": {
-        "classmap": [""]
+        "classmap":["src/"],
     },
     "replace": {
         "contao-legacy/twitterreader": "*"
@@ -40,8 +41,14 @@
     "extra": {
         "contao": {
             "sources": {
-                "": "system/modules/twitterreader"
-            }
+                "src": "system/modules/twitterreader"
+            },
+            "runonce":[
+              "src/config/runonce.php"
+            ]
+        }
+        "master": {
+          "master/1.2.0": "1.2.0"
         }
     }
 }
