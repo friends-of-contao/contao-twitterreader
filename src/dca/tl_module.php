@@ -53,7 +53,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitter_requesttype']=array(
     ),
     'eval'=> array(
         'mandatory'=>true,
-        'submitOnChange'=>true
+        'submitOnChange'=>true,
+        'tl_class'=>'w50'
     )
 );
 
@@ -68,7 +69,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twittertemplate']=array(
     ),
     'eval'=> array(
         'mandatory'=>true,
-        'tl_class'=>'w50'
+        'tl_class'=>'clr'
     )
 );
 
@@ -98,19 +99,22 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twittercount']=array(
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHTTPLinks']=array(
     'label'=>&$GLOBALS['TL_LANG']['tl_module']['twitterEnableHTTPLinks'],
     'exclude'=>true,
-    'inputType'=>'checkbox'
+    'inputType'=>'checkbox',
+    'eval'=>array('tl_class'=>'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableUserProfileLink']=array(
     'label'=>&$GLOBALS['TL_LANG']['tl_module']['twitterEnableUserProfileLink'],
     'exclude'=>true,
-    'inputType'=>'checkbox'
+    'inputType'=>'checkbox',
+    'eval'=>array('tl_class'=>'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHashtagLink']=array(
     'label'=>&$GLOBALS['TL_LANG']['tl_module']['twitterEnableHashtagLink'],
     'exclude'=>true,
-    'inputType'=>'checkbox'
+    'inputType'=>'checkbox',
+    'eval'=>array('tl_class'=>'w50')
 );
 
 /**
@@ -137,14 +141,14 @@ class tl_twitter_module extends Backend
     public function checkConfig()
     {
 
-        
-        
-        if ((!$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token']) || 
-        (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']) || 
-        (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_user_id']) || 
+
+
+        if ((!$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token']) ||
+        (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']) ||
+        (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_user_id']) ||
         (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_screen_name']))
         {
-        $_SESSION["TL_ERROR"][]=$GLOBALS['TL_LANG']['tl_module']['twitterreader_auth_missing'];    
+        $_SESSION["TL_ERROR"][]=$GLOBALS['TL_LANG']['tl_module']['twitterreader_auth_missing'];
         }
 
     }
