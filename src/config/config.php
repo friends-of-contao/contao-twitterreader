@@ -9,15 +9,15 @@
  * @license     http://gplv3.fsf.org/ GPL
  * @filesource  https://github.com/lindesbs/TwitterReader
  */
- 
+
 define('TWITTERREADER_CONSUMER_KEY', 'FiC4gKrsbRpXQ4GatTbLhw');
-define('TWITTERREADER_CONSUMER_SECRET', 'noMHHjUPEYiBwH7LHg19x6mvkxG60AmEHfMzIGXCo'); 
+define('TWITTERREADER_CONSUMER_SECRET', 'noMHHjUPEYiBwH7LHg19x6mvkxG60AmEHfMzIGXCo');
 
 
 /**
  * Front end modules
  */
-$GLOBALS['FE_MOD']['twitterreader']['twitterreader'] = 'FrontendTwitterReader';
+$GLOBALS['FE_MOD']['application']['twitterreader'] = 'FrontendTwitterReader';
 
 
 /**
