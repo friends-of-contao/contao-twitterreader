@@ -16,7 +16,7 @@
  */
 $GLOBALS['TL_LANG']['FMD']['twitterreader'] = array
 (
-  'Twittermeldungen anzeigen', 
+  'Twittermeldungen anzeigen',
   ''
 );
 $GLOBALS['TL_LANG']['tl_module']['twitterusers'] = array
@@ -33,11 +33,6 @@ $GLOBALS['TL_LANG']['tl_module']['twitterEnableHTTPLinks'] = array
 (
 	'Wandel HTTP Links um',
 	'Sollen URL automatisch als Link umgeschrieben werden ?'
-);
-$GLOBALS['TL_LANG']['tl_module']['twitterShowReplies'] = array
-(
-	'Anzeige aller Antwort-Tweets',
-	'Sollen Nachrichten angezeigt werden, die eine Antwort beinhalten?'
 );
 $GLOBALS['TL_LANG']['tl_module']['twitterEnableUserProfileLink'] = array
 (

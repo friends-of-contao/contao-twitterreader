@@ -101,12 +101,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHTTPLinks']=array(
     'inputType'=>'checkbox'
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['twitterShowReplies']=array(
-    'label'=>&$GLOBALS['TL_LANG']['tl_module']['twitterShowReplies'],
-    'exclude'=>true,
-    'inputType'=>'checkbox'
-);
-
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableUserProfileLink']=array(
     'label'=>&$GLOBALS['TL_LANG']['tl_module']['twitterEnableUserProfileLink'],
     'exclude'=>true,
