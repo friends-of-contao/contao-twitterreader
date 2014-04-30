@@ -21,7 +21,7 @@ $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'][]=array(
     'checkConfig'
 );
 
-$GLOBALS['TL_DCA']['tl_module']['palettes']['twitterreader']='name,type,headline;{area_twitter},twitter_requesttype,twitterusers,twittercount,twittertemplate;{area_twittersettings},twitterEnableHTTPLinks,twitterEnableUserProfileLink,twitterEnableHashtagLink;align,space,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['twitterreader'] = '{title_legend},name,headline,type;{config_legend},twitter_requesttype,twitterusers,twittercount;{template_legend},twittertemplate,twitterEnableHTTPLinks,twitterEnableUserProfileLink,twitterEnableHashtagLink;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields
