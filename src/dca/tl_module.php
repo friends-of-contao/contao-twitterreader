@@ -41,6 +41,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitter_requesttype'] = array
     'exclude'           => true,
     'inputType'         => 'select',
     'options'           => array('mentions_timeline', 'home_timeline', 'retweets_of_me', 'user_timeline'),
+    'reference'         => &$GLOBALS['TL_LANG']['tl_module']['twitter_requesttype'],
     'eval'              => array('mandatory'=>true, 'submitOnChange'=>true, 'tl_class'=>'w50'),
     'save_callback'     => array
     (
