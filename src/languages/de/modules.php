@@ -10,6 +10,10 @@
  * @filesource  https://github.com/lindesbs/TwitterReader
  */
 
+/**
+ * Define name and tooltip for preferences (inactive modules)
+ */
+$GLOBALS['TL_LANG']['MOD']['twitterreader'] = 'TwitterReader Erweiterung um Twittermeldungen anzuzeigen';
 
 /**
  * Front end modules

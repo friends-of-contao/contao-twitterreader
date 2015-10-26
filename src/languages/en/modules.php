@@ -11,6 +11,11 @@
  */
 
 /**
+ * Define name and tooltip for preferences (inactive modules)
+ */
+$GLOBALS['TL_LANG']['MOD']['twitterreader'] = 'TwitterReader extension to show twitter postings';
+
+/**
  * Front end modules
  */
 $GLOBALS['TL_LANG']['FMD']['twitterreader'] = array('Show twitter postings');
