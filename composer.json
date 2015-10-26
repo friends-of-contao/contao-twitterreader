@@ -33,7 +33,7 @@
         "contao-community-alliance/composer-installer": "*"
     },
     "autoload": {
-        "classmap":["src/"],
+        "classmap":["src/"]
     },
     "replace": {
         "contao-legacy/twitterreader": "*"
@@ -46,9 +46,6 @@
             "runonce":[
               "src/config/runonce.php"
             ]
-        }
-        "master": {
-          "master/1.2.0": "1.2.0"
         }
     }
 }
