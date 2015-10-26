@@ -33,7 +33,7 @@
         "contao-community-alliance/composer-installer": "*"
     },
     "autoload": {
-        "classmap":["src/"],
+        "classmap":["src/"]
     },
     "replace": {
         "contao-legacy/twitterreader": "*"
