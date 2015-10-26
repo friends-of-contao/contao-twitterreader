@@ -16,6 +16,7 @@
 $GLOBALS['TL_LANG']['tl_module']['twitterusers']                                = array('Name of twitter user', 'The name of the twitter user.');
 $GLOBALS['TL_LANG']['tl_module']['twittercount']                                = array('Amount of postings', 'How many postings would you like to display?');
 $GLOBALS['TL_LANG']['tl_module']['twitterEnableHTTPLinks']                      = array('Enable linking of HTTP', 'Automatic linking of URLs?');
+$GLOBALS['TL_LANG']['tl_module']['twitterEnableMediaLinks']                     = array('Enable linking of media', 'Automatic linking of media URLs?');
 $GLOBALS['TL_LANG']['tl_module']['twitterEnableUserProfileLink']                = array('Enable linking of users', 'Automatic linking of available users?');
 $GLOBALS['TL_LANG']['tl_module']['twitterEnableHashtagLink']                    = array('Enable linking of hashtags', 'Automatic linking of available hashtags?');
 $GLOBALS['TL_LANG']['tl_module']['twittertemplate']                             = array('Template', 'The used template for frontend rendering (starts with <i>twitterreader_</i>).');

@@ -127,6 +127,14 @@ class FrontendTwitterReader extends Module
                 }
             }
 
+            if (($this->twitterEnableMediaLinks) && ($item->extended_entities->media))
+            {
+                foreach ($item->extended_entities->media as $media)
+                {
+                    $textOutput=str_replace($media->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $media->url, $media->url, LINK_NEW_WINDOW_BLUR, $media->url), $textOutput);
+                }
+            }
+
             if (($this->twitterEnableUserProfileLink) && ($item->entities->user_mentions))
             {
                 foreach ($item->entities->user_mentions as $mention)

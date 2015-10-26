@@ -6,6 +6,7 @@ CREATE TABLE `tl_module` (
   `twittertemplate` varchar(255) NOT NULL default '',
 
   `twitterEnableHTTPLinks` varchar(1) NOT NULL default '',
+  `twitterEnableMediaLinks` varchar(1) NOT NULL default '',
   `twitterEnableUserProfileLink` varchar(1) NOT NULL default '',
   `twitterEnableHashtagLink` varchar(1) NOT NULL default '',
 
