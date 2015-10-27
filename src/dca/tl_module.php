@@ -21,7 +21,7 @@ $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'][] = array('tl_twitt
 /**
  * Add palette to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['twitterreader'] = '{title_legend},name,headline,type;{config_legend},twitter_requesttype,twitterusers,twittercount;{template_legend},twittertemplate,twitterEnableHTTPLinks,twitterEnableUserProfileLink,twitterEnableHashtagLink;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['twitterreader'] = '{title_legend},name,headline,type;{config_legend},twitter_requesttype,twitterusers,twittercount;{template_legend},twittertemplate,twitterEnableHTTPLinks,twitterEnableMediaLinks,twitterEnableUserProfileLink,twitterEnableHashtagLink;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields
@@ -72,6 +72,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twittercount'] = array
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHTTPLinks'] = array
 (
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEnableHTTPLinks'],
+    'exclude'           => true,
+    'inputType'         => 'checkbox',
+    'eval'              => array('tl_class'=>'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableMediaLinks'] = array
+(
+    'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEnableMediaLinks'],
     'exclude'           => true,
     'inputType'         => 'checkbox',
     'eval'              => array('tl_class'=>'w50')
