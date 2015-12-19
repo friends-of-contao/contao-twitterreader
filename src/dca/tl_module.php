@@ -21,7 +21,15 @@ $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'][] = array('tl_twitt
 /**
  * Add palette to tl_module
  */
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'twitterEnableMediaLinks';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'twitterEmbedFirstMedia';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['twitterreader'] = '{title_legend},name,headline,type;{config_legend},twitter_requesttype,twitterusers,twittercount;{template_legend},twittertemplate,twitterEnableUserProfileLink,twitterEnableHashtagLink,twitterEnableHTTPLinks,twitterEnableMediaLinks;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+
+/**
+ * Add to subpalettes
+ */
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['twitterEnableMediaLinks'] = 'twitterEmbedFirstMedia';
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['twitterEmbedFirstMedia'] = 'twitterEmbedFirstMediaSize';
 
 /**
  * Add fields
@@ -98,7 +106,24 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableMediaLinks'] = array
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEnableMediaLinks'],
     'exclude'           => true,
     'inputType'         => 'checkbox',
-    'eval'              => array('tl_class'=>'w50')
+    'eval'              => array('tl_class'=>'w50', 'submitOnChange'=>true)
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['twitterEmbedFirstMedia'] = array
+(
+    'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEmbedFirstMedia'],
+    'exclude'           => true,
+    'inputType'         => 'checkbox',
+    'eval'              => array('tl_class'=>'w50', 'submitOnChange'=>true)
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['twitterEmbedFirstMediaSize'] = array
+(
+    'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEmbedFirstMediaSize'],
+    'exclude'           => true,
+    'inputType'         => 'imageSize',
+    'options'            => array('px', '%', 'em', 'rem', 'ex', 'pt', 'pc', 'in', 'cm', 'mm'), 
+    'eval'              => array('includeBlankOption'=>true, 'rgxp'=>'digit', 'nospace'=>true, 'tl_class'=>'w50'),
 );
 
 /**

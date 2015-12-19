@@ -9,6 +9,8 @@ CREATE TABLE `tl_module` (
   `twitterEnableHashtagLink` varchar(1) NOT NULL default '',
   `twitterEnableHTTPLinks` varchar(1) NOT NULL default '',
   `twitterEnableMediaLinks` varchar(1) NOT NULL default '',
+  `twitterEmbedFirstMedia` varchar(1) NOT NULL default '',
+  `twitterEmbedFirstMediaSize` varchar(64) NOT NULL default '',
 
   `twitterLastUpdate` int(10) unsigned NOT NULL default '0',
   `twitterFeedBackup` text NULL,
