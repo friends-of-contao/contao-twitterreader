@@ -123,7 +123,7 @@ class FrontendTwitterReader extends Module
             {
                 foreach ($item->entities->urls as $url)
                 {
-                    $textOutput=str_replace($url->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $url->url, $url->url, LINK_NEW_WINDOW_BLUR, $url->url), $textOutput);
+                    $textOutput=str_replace($url->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $url->expanded_url, $url->expanded_url, LINK_NEW_WINDOW_BLUR, $url->url), $textOutput);
                 }
             }
 
@@ -131,7 +131,7 @@ class FrontendTwitterReader extends Module
             {
                 foreach ($item->extended_entities->media as $media)
                 {
-                    $textOutput=str_replace($media->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $media->url, $media->url, LINK_NEW_WINDOW_BLUR, $media->url), $textOutput);
+                    $textOutput=str_replace($media->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $media->expanded_url, $media->expanded_url, LINK_NEW_WINDOW_BLUR, $media->display_url), $textOutput);
                 }
             }
 
