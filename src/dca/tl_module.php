@@ -65,7 +65,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twittercount'] = array
     'default'           => '3',
     'exclude'           => true,
     'inputType'         => 'select',
-    'options'           => range(1,10),
+    'options'           => range(1,20),
     'eval'              => array('mandatory'=>true, 'tl_class'=>'w50')
 );
 
