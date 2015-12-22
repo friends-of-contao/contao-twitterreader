@@ -119,23 +119,23 @@ class FrontendTwitterReader extends Module
             $textOutput=$item->text;
             $showItem=true;
 
-            if (($this->twitterEnableHTTPLinks) && ($item->entities->urls))
+            if ($this->twitterEnableHTTPLinks && $item->entities->urls)
             {
                 foreach ($item->entities->urls as $url)
                 {
-                    $textOutput=str_replace($url->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $url->url, $url->url, LINK_NEW_WINDOW_BLUR, $url->url), $textOutput);
+                    $textOutput=str_replace($url->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $url->expanded_url, $url->expanded_url, LINK_NEW_WINDOW_BLUR, $url->url), $textOutput);
                 }
             }
 
-            if (($this->twitterEnableMediaLinks) && ($item->extended_entities->media))
+            if ($this->twitterEnableMediaLinks && $item->extended_entities->media)
             {
                 foreach ($item->extended_entities->media as $media)
                 {
-                    $textOutput=str_replace($media->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $media->url, $media->url, LINK_NEW_WINDOW_BLUR, $media->url), $textOutput);
+                    $textOutput=str_replace($media->url, sprintf('<a title="%s" href="%s" %s>%s</a>', $media->expanded_url, $media->expanded_url, LINK_NEW_WINDOW_BLUR, $media->display_url), $textOutput);
                 }
             }
 
-            if (($this->twitterEnableUserProfileLink) && ($item->entities->user_mentions))
+            if ($this->twitterEnableUserProfileLink && $item->entities->user_mentions)
             {
                 foreach ($item->entities->user_mentions as $mention)
                 {
@@ -143,11 +143,28 @@ class FrontendTwitterReader extends Module
                 }
             }
 
-            if (($this->twitterEnableHashtagLink) && ($item->entities->hashtags))
+            if ($this->twitterEnableHashtagLink && $item->entities->hashtags)
             {
                 foreach ($item->entities->hashtags as $hashtag)
                 {
                     $textOutput=str_replace('#' . $hashtag->text, sprintf('<a title="%s" href="https://www.twitter.com/search?q=%s" %s>#%s</a>', $hashtag->text, $hashtag->text, LINK_NEW_WINDOW_BLUR, $hashtag->text), $textOutput);
+                }
+            }
+            
+            if ($this->twitterEnableMediaLinks && $this->twitterEmbedFirstMedia && $item->extended_entities->media)
+            {
+                // only embed the first media
+                $media = $item->extended_entities->media[0];
+                $size = deserialize($this->twitterEmbedFirstMediaSize, true);
+                
+                if ($media->type == 'photo')
+                {
+                  $textOutput .= '<img style="width: ' . $size[0] . $size[2] . ';height: ' . $size[1] . $size[2] . ';" src="' . $media->media_url_https . '" />';
+                }
+                else if ($media->type == 'video')
+                {
+                  $video = $media->video_info->variants[5];
+                  $textOutput .= '<iframe class="autosized-media" frameborder="0" allowfullscreen="" style="width: ' . $size[0] . $size[2] . ';height: ' . $size[1] . $size[2] . ';" src="https://amp.twimg.com/amplify-web-player/prod/source.html?video_url=' . urlencode($video->url) . '&amp;content_type=' . urlencode($video->content_type) . '&amp;image_src=' . urlencode($media->media_url_https) . '"></iframe>';
                 }
             }
 
