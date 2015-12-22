@@ -1,6 +1,4 @@
 <?php
-if(!defined('TL_ROOT'))
-    die('You can not access this file directly!');
 
 /**
  * Twitter Reader for Contao Open Source CMS
@@ -47,6 +45,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitter_requesttype'] = array
     (
         array('tl_twitter_module', 'purgeCacheData'),
     ),
+    'sql'               => "varchar(255) NOT NULL default 'user_timeline'"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterusers'] = array
@@ -54,7 +53,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterusers'] = array
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterusers'],
     'exclude'           => true,
     'inputType'         => 'text',
-    'eval'              => array('mandatory'=>true, 'tl_class'=>'w50')
+    'eval'              => array('mandatory'=>true, 'tl_class'=>'w50'),
+    'sql'               => "varchar(255) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twittercount'] = array
@@ -64,7 +64,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twittercount'] = array
     'exclude'           => true,
     'inputType'         => 'select',
     'options'           => range(1,20),
-    'eval'              => array('mandatory'=>true, 'tl_class'=>'w50')
+    'eval'              => array('mandatory'=>true, 'tl_class'=>'w50'),
+    'sql'               => "varchar(255) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twittertemplate'] = array
@@ -74,7 +75,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twittertemplate'] = array
     'exclude'           => true,
     'inputType'         => 'select',
     'options_callback'  => array('tl_twitter_module', 'getTwitterTemplates'),
-    'eval'              => array('mandatory'=>true, 'tl_class'=>'clr')
+    'eval'              => array('mandatory'=>true, 'tl_class'=>'clr'),
+    'sql'               => "varchar(255) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableUserProfileLink'] = array
@@ -82,7 +84,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableUserProfileLink'] = arra
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEnableUserProfileLink'],
     'exclude'           => true,
     'inputType'         => 'checkbox',
-    'eval'              => array('tl_class'=>'w50')
+    'eval'              => array('tl_class'=>'w50'),
+    'sql'               => "varchar(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHashtagLink'] = array
@@ -90,7 +93,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHashtagLink'] = array
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEnableHashtagLink'],
     'exclude'           => true,
     'inputType'         => 'checkbox',
-    'eval'              => array('tl_class'=>'w50')
+    'eval'              => array('tl_class'=>'w50'),
+    'sql'               => "varchar(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHTTPLinks'] = array
@@ -98,7 +102,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableHTTPLinks'] = array
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEnableHTTPLinks'],
     'exclude'           => true,
     'inputType'         => 'checkbox',
-    'eval'              => array('tl_class'=>'w50')
+    'eval'              => array('tl_class'=>'w50'),
+    'sql'               => "varchar(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableMediaLinks'] = array
@@ -106,7 +111,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEnableMediaLinks'] = array
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEnableMediaLinks'],
     'exclude'           => true,
     'inputType'         => 'checkbox',
-    'eval'              => array('tl_class'=>'w50', 'submitOnChange'=>true)
+    'eval'              => array('tl_class'=>'w50', 'submitOnChange'=>true),
+    'sql'               => "varchar(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEmbedFirstMedia'] = array
@@ -114,7 +120,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEmbedFirstMedia'] = array
     'label'             => &$GLOBALS['TL_LANG']['tl_module']['twitterEmbedFirstMedia'],
     'exclude'           => true,
     'inputType'         => 'checkbox',
-    'eval'              => array('tl_class'=>'w50', 'submitOnChange'=>true)
+    'eval'              => array('tl_class'=>'w50', 'submitOnChange'=>true),
+    'sql'               => "varchar(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEmbedFirstMediaSize'] = array
@@ -124,6 +131,17 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['twitterEmbedFirstMediaSize'] = array
     'inputType'         => 'imageSize',
     'options'            => array('px', '%', 'em', 'rem', 'ex', 'pt', 'pc', 'in', 'cm', 'mm'), 
     'eval'              => array('includeBlankOption'=>true, 'rgxp'=>'digit', 'nospace'=>true, 'tl_class'=>'w50'),
+    'sql'               => "varchar(64) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['twitterLastUpdate'] = array
+(
+    'sql'               => "int(10) unsigned NOT NULL default '0'"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['twitterFeedBackup'] = array
+(
+   'sql'               => "text NULL"
 );
 
 /**

@@ -3,11 +3,9 @@
 /**
  * Contao Open Source CMS
  *
- * Copyright (c) 2005-2013 Leo Feyer
+ * Copyright (c) 2005-2015 Leo Feyer
  *
- * @package Twitterreader
- * @link    https://contao.org
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @license LGPL-3.0+
  */
 
 
@@ -16,10 +14,11 @@
  */
 ClassLoader::addClasses(array
 (
-	'FrontendTwitterReader' => 'system/modules/twitterreader/FrontendTwitterReader.php',
-	'OAuth'                 => 'system/modules/twitterreader/OAuth.php',
-	'TwitterOAuth'          => 'system/modules/twitterreader/TwitterOAuth.php',
-	'WidgetTwitterOAuth'    => 'system/modules/twitterreader/WidgetTwitterOAuth.php',
+	// Classes
+	'FrontendTwitterReader' => 'system/modules/twitterreader/classes/FrontendTwitterReader.php',
+	'OAuth'                 => 'system/modules/twitterreader/classes/OAuth.php',
+	'TwitterOAuth'          => 'system/modules/twitterreader/classes/TwitterOAuth.php',
+	'WidgetTwitterOAuth'    => 'system/modules/twitterreader/classes/WidgetTwitterOAuth.php',
 ));
 
 
