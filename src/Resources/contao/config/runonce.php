@@ -10,7 +10,7 @@
 
 namespace FOC\TwitterReaderBundle;
 
-class runonce extends \Controller
+class RunonceJob extends \Controller
 {
     public function __construct()
     {
