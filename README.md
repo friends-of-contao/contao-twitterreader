@@ -11,7 +11,7 @@ Provides a twitter reader extension for Contao.
 Installation
 ------------
 
-Install the extension via composer: [friends-of-contao/contao-twitterreader](https://packagist.org/packages/friends-of-contao/contao-twitterreader).
+Install the extension via composer: [friends-of-contao/contao-twitterreader](https://packagist.org/packages/friends-of-contao/contao-twitterreader) or Contao Manager (friends-of-contao/contao-twitterreader)
 
 If you prefer to install it manually, download the latest release here: https://github.com/friends-of-contao/contao-twitterreader/releases
 
@@ -27,9 +27,8 @@ https://github.com/friends-of-contao/contao-twitterreader/issues
 Compatibility
 -------------
 
-- Contao version 4.4 (4.4.x)
-- min Contao version >= 3.2.0, max. Contao version: <  3.6.0 (1.4.x)
-
+* Contao version 4.4 (4.4.x)
+* min. Contao version >= 3.2.0, max. Contao version: < 3.6.0 (1.4.x)
 
 Dependency
 ----------
