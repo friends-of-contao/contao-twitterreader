@@ -24,6 +24,12 @@
             "homepage": "https://contao.cliff-parnitzky.de",
             "email": "contao@cliff-parnitzky.de",
             "role": "Developer"
+        },
+        {
+            "name": "Helmut Schottmüller",
+            "homepage": "https://github.com/hschottm",
+            "email": "hschottm@gmail.com",
+            "role": "Developer"
         }
     ],
     "support": {
@@ -32,31 +38,45 @@
         "source": "https://github.com/friends-of-contao/contao-twitterreader"
     },
     "require": {
-        "php": ">=5.3",
-        "contao/core": ">=3.2.0,<3.6",
-        "contao-community-alliance/composer-plugin": "~2.0"
+        "php": ">=5.6.0",
+        "contao/core-bundle":"~4.4",
+        "symfony/framework-bundle": "^3.3",
+        "abraham/twitteroauth": "^0.9"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0",
+        "doctrine/doctrine-cache-bundle": "^1.3",
+        "friendsofphp/php-cs-fixer": "^2.6",
+        "leofeyer/optimize-native-functions-fixer": "^1.1",
+        "php-http/guzzle6-adapter": "^1.1",
+        "php-http/message-factory": "^1.0.2",
+        "phpunit/phpunit": "^5.7.26",
+        "symfony/phpunit-bridge": "^3.2"
     },
     "conflict": {
-        "contao/core":"3.4.0,3.4.1,3.4.2" 
+        "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "autoload": {
-        "classmap":["src/"]
-    },
-    "replace": {
-        "lindesbs/twitterreader": "*"
+      "psr-4": {
+  			"FOC\\TwitterReaderBundle\\": "src/"
+  		},
+      "classmap": [
+            "src/Resources/contao/"
+    	    ],
+    	"exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+    	    ]
     },
     "extra": {
-        "contao": {
-            "sources": {
-                "src": "system/modules/twitterreader"
-            },
-            "runonce":[
-              "runonce/runonce.php"
-            ]
-        },
-        "branch-alias": {
-            "dev-master": "1.4.x-dev"
-        }
+      "contao": {
+        "runonce": [
+            "src/Resources/contao/config/runonce.php"
+        ]
+      },
+      "contao-manager-plugin": "FOC\\TwitterReaderBundle\\ContaoManager\\Plugin"
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
