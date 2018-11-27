@@ -9,6 +9,7 @@ $header = <<<EOF
 EOF;
 
 $finder = PhpCsFixer\Finder::create()
+    ->exclude('Resources')
     ->in([__DIR__.'/src'])
 ;
 
