@@ -27,7 +27,7 @@ https://github.com/friends-of-contao/contao-twitterreader/issues
 Compatibility
 -------------
 
-* Contao version 4.4 (4.4.x)
+* Contao version 4.4 (2.0.x)
 * min. Contao version >= 3.2.0, max. Contao version: < 3.6.0 (1.4.x)
 
 Dependency
