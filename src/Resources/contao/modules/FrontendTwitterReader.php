@@ -75,7 +75,7 @@ class FrontendTwitterReader extends \Module
             }
             $objFeed = $oauth->get('statuses/'.$this->twitter_requesttype, $arrFeed);
 
-            if (\count($objFeed->errors) > 0) {
+            if (is_array($objFeed->errors) && \count($objFeed->errors) > 0) {
                 \System::log($objFeed->errors[0]->message, __METHOD__, TL_ERROR);
             } else {
                 if (\is_array($objFeed)) {
