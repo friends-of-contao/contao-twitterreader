@@ -11,6 +11,7 @@
 namespace FOC\TwitterReaderBundle;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Contao\BackendTemplate;
 
  /**
   * Class FrontendTwitterReader.
