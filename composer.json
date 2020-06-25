@@ -39,8 +39,7 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "contao/core-bundle":"~4.4",
-        "symfony/framework-bundle": "^3.3",
+        "contao/core-bundle":"~4.4|~4.9",
         "abraham/twitteroauth": "^0.9"
     },
     "require-dev": {
