@@ -1,5 +1,5 @@
 {
-    "name": "friends-of-contao/contao-twitterreader",
+    "name": "heimrichhannot/contao-twitterreader",
     "description": "Provides a twitter reader extension for Contao.",
     "keywords": ["twitter", "contao"],
     "type": "contao-module",
