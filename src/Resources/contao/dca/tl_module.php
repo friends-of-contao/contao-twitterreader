@@ -159,7 +159,7 @@ class tl_twitter_module extends Backend
 
     public function getTwitterTemplates(DataContainer $dc)
     {
-        return $this->getTemplateGroup('twitterreader_', $dc->activeRecord->pid);
+        return $this->getTemplateGroup('twitterreader_');
     }
 
     public function purgeCacheData($field, DataContainer $dc)
