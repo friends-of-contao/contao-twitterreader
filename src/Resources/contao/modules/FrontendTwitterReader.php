@@ -37,7 +37,7 @@ class FrontendTwitterReader extends \Module
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
-            $objTemplate->href = $this->Environment->script.'?do=themes&amp;table=tl_module&amp;act=edit&amp;id='.$this->id;
+            $objTemplate->href = \Environment::script.'?do=themes&amp;table=tl_module&amp;act=edit&amp;id='.$this->id;
 
             return $objTemplate->parse();
         }
@@ -63,8 +63,18 @@ class FrontendTwitterReader extends \Module
         // check only, if last check is longer than 1 minute old.
         $actualTime = time();
 
+        $oauth_token = "";
+        $oauth_secret = "";
+
+        if (array_key_exists('twitterreader_credentials_oauth_token', $GLOBALS['TL_CONFIG'])) {
+            $oauth_token = $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token'];
+        }
+        if (array_key_exists('twitterreader_credentials_oauth_token_secret', $GLOBALS['TL_CONFIG'])) {
+            $oauth_secret = $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret'];
+        }
+
         if ((($actualTime - $moduleModel->twitterLastUpdate) > $UpdateRange) || (!\is_array($objFeed))) {
-            $oauth = new TwitterOAuth(TwitterUtil::TwitterReaderConsumerKey(), TwitterUtil::TwitterReaderConsumerSecret(), $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token'], $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']);
+            $oauth = new TwitterOAuth(TwitterUtil::TwitterReaderConsumerKey(), TwitterUtil::TwitterReaderConsumerSecret(), $oauth_token, $oauth_secret);
             $arrFeed = [
         'include_entities' => true,
         'count' => $this->twittercount,

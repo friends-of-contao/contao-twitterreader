@@ -148,18 +148,32 @@ class tl_twitter_module extends Backend
 
     public function checkConfig()
     {
-        if ((!$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token']) ||
-            (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']) ||
-            (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_user_id']) ||
-            (!$GLOBALS['TL_CONFIG']['twitterreader_credentials_screen_name'])
-        ) {
+        $oauth_token = "";
+        $oauth_secret = "";
+        $twitter_user_id = "";
+        $twitter_screen_name = "";
+
+        if (array_key_exists('twitterreader_credentials_oauth_token', $GLOBALS['TL_CONFIG'])) {
+            $oauth_token = $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token'];
+        }
+        if (array_key_exists('twitterreader_credentials_oauth_token_secret', $GLOBALS['TL_CONFIG'])) {
+            $oauth_secret = $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret'];
+        }
+        if (array_key_exists('twitterreader_credentials_user_id', $GLOBALS['TL_CONFIG'])) {
+            $twitter_user_id = $GLOBALS['TL_CONFIG']['twitterreader_credentials_user_id'];
+        }
+        if (array_key_exists('twitterreader_credentials_screen_name', $GLOBALS['TL_CONFIG'])) {
+            $twitter_screen_name = $GLOBALS['TL_CONFIG']['twitterreader_credentials_screen_name'];
+        }
+
+        if (strlen($oauth_token) == 0 || strlen($oauth_secret) == 0 || strlen($twitter_user_id) == 0 || strlen($twitter_screen_name) == 0) {
             $_SESSION['TL_ERROR'][] = $GLOBALS['TL_LANG']['tl_module']['twitterreader_auth_missing'];
         }
     }
 
     public function getTwitterTemplates(DataContainer $dc)
     {
-        return $this->getTemplateGroup('twitterreader_', $dc->activeRecord->pid);
+        return \Controller::getTemplateGroup('twitterreader_');
     }
 
     public function purgeCacheData($field, DataContainer $dc)

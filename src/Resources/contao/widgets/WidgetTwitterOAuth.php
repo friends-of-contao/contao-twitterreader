@@ -112,17 +112,27 @@ class WidgetTwitterOAuth extends \Widget
         } elseif ('TwitterReaderOAuthRevoke' === \Input::get('action')) {
             $this->revokeTwitterOAuth();
         }
-        if (\Input::get('oauth_verifyer')) {
+        if (strlen(\Input::get('oauth_verifier'))) {
             $this->verifyTwitterOAuth();
         }
 
-        if ($GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token']) {
-            $connection = new TwitterOAuth(TwitterUtil::TwitterReaderConsumerKey(), TwitterUtil::TwitterReaderConsumerSecret(),
-        $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token'],
-        $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']);
-            $objAuth = $connection->get('account/verify_credentials');
+        $oauth_token = "";
+        $oauth_secret = "";
 
-            if ($objAuth->error) {
+        if (array_key_exists('twitterreader_credentials_oauth_token', $GLOBALS['TL_CONFIG'])) {
+            $oauth_token = $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token'];
+        }
+        if (array_key_exists('twitterreader_credentials_oauth_token_secret', $GLOBALS['TL_CONFIG'])) {
+            $oauth_secret = $GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret'];
+        }
+
+        $sWizard = '';
+        if (strlen($oauth_token)) {
+            $connection = new TwitterOAuth(TwitterUtil::TwitterReaderConsumerKey(), TwitterUtil::TwitterReaderConsumerSecret(),
+        $oauth_token,
+        $oauth_secret);
+            $objAuth = $connection->get('account/verify_credentials');
+            if ($objAuth == null) {
                 $sWizard .= $objAuth->error.'<br>';
             } else {
                 $sWizard .= '<p>'.$GLOBALS['TL_LANG']['tl_settings']['twitterreader_authenticated_as'].':</p>';
@@ -173,7 +183,7 @@ class WidgetTwitterOAuth extends \Widget
         $connection = new TwitterOAuth(TwitterUtil::TwitterReaderConsumerKey(), TwitterUtil::TwitterReaderConsumerSecret());
         $urlRequest = preg_replace('/&action=TwitterReaderOAuthCheck/i', '', \Environment::get('request'));
 
-        $request_token = $connection->oauth('oauth/request_token', ['oauth_callback' => 'https://www.aurealis.de/contao-twitterreader-redirect.php?redirectUrl='.TwitterUtil::base64url_encode(\Environment::get('base').$urlRequest)]);
+        $request_token = $connection->oauth('oauth/request_token', ['oauth_callback' => 'https://opensource.nasbrill-soft.de/contao-twitterreader-redirect.php?redirectUrl='.TwitterUtil::base64url_encode(\Environment::get('base').$urlRequest)]);
 
         $this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token']", $request_token['oauth_token']);
         $this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_oauth_token_secret']", $request_token['oauth_token_secret']);
@@ -192,14 +202,14 @@ class WidgetTwitterOAuth extends \Widget
         $GLOBALS['TL_CONFIG']['twitterreader_oauth_token'],
         $GLOBALS['TL_CONFIG']['twitterreader_oauth_token_secret']);
 
-        $arrAccessToken = $connection->oauth('oauth/access_token', ['oauth_verifier' => \Input::get('oauth_verifyer')]);
+        $arrAccessToken = $connection->oauth("oauth/access_token", ["oauth_verifier" => \Input::get('oauth_verifier')]);
 
         $this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token']", $arrAccessToken['oauth_token']);
         $this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_credentials_oauth_token_secret']", $arrAccessToken['oauth_token_secret']);
         $this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_credentials_user_id']", $arrAccessToken['user_id']);
         $this->Config->update("\$GLOBALS['TL_CONFIG']['twitterreader_credentials_screen_name']", $arrAccessToken['screen_name']);
 
-        $urlRequest = preg_replace('/(&(amp;)?|\?)oauth_verifyer=[^& ]*/i', '', \Environment::get('request'));
+        $urlRequest = preg_replace('/(&(amp;)?|\?)oauth_verifier=[^& ]*/i', '', \Environment::get('request'));
         $urlRequest = preg_replace('/(&(amp;)?|\?)oauth_token=[^& ]*/i', '', $urlRequest);
 
         $this->redirect($urlRequest);
